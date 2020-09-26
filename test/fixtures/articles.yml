@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  summary: MyString
+  keywords[]: MyString
+  tittle: MyString
+  components[]: 1
+  likes[]: 1
+  published_at: 2020-09-26 13:52:45
+
+two:
+  summary: MyString
+  keywords[]: MyString
+  tittle: MyString
+  components[]: 1
+  likes[]: 1
+  published_at: 2020-09-26 13:52:45

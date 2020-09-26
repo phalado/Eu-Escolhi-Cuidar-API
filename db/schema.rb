@@ -10,10 +10,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_26_055812) do
+ActiveRecord::Schema.define(version: 2020_09_26_165406) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "articles", force: :cascade do |t|
+    t.string "summary"
+    t.string "keywords", default: [], array: true
+    t.string "tittle"
+    t.integer "components", default: [], array: true
+    t.integer "likes"
+    t.datetime "published_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "article_id"
+    t.string "content"
+    t.boolean "edited"
+    t.integer "likes"
+    t.boolean "author_like"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["article_id"], name: "index_comments_on_article_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "components", force: :cascade do |t|
+    t.bigint "article_id"
+    t.string "content"
+    t.string "type"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["article_id"], name: "index_components_on_article_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -29,9 +62,6 @@ ActiveRecord::Schema.define(version: 2020_09_26_055812) do
     t.datetime "confirmed_at"
     t.boolean "notifications"
     t.boolean "admin"
-    t.integer "likes", default: [], array: true
-    t.integer "comments", default: [], array: true
-    t.integer "com_likes", default: [], array: true
     t.string "authentication_token", limit: 30
     t.index ["authentication_token"], name: "index_users_on_authentication_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
