@@ -3,6 +3,8 @@ module Api::V1
     acts_as_token_authentication_handler_for User
     before_action :require_authentication!
 
+    include Response
+    include ExceptionHandler
 
     private
 
