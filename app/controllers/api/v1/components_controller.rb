@@ -1,4 +1,4 @@
-class Api::V1::ComponentsController < API::V1::ApiController
+class Api::V1::ComponentsController < Api::V1::ApiController
   before_action :set_component, only: %i[update, destroy]
 
   def index
